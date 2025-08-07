@@ -1,0 +1,577 @@
+{
+  "info": {
+    "_postman_id": "generated-account-api-collection",
+    "name": "Account API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "SuperAdmin Only View",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/account/superadmin/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "account",
+            "superadmin",
+            ""
+          ]
+        },
+        "description": "Test endpoint for SuperAdmin only access."
+      },
+      "response": []
+    },
+    {
+      "name": "Student Only View",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/account/businessman/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "account",
+            "businessman",
+            ""
+          ]
+        },
+        "description": "Test endpoint for Student only access."
+      },
+      "response": []
+    },
+    {
+      "name": "User Logout",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/account/auth/logout/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "account",
+            "auth",
+            "logout",
+            ""
+          ]
+        },
+        "description": "Logs out the current user."
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Account",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/account/auth/delete-account/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "account",
+            "auth",
+            "delete-account",
+            ""
+          ]
+        },
+        "description": "Deletes the current user's account."
+      },
+      "response": []
+    },
+    {
+      "name": "Change Email",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"new_email\": \"new.email@example.com\",\n    \"password\": \"your_current_password\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/account/auth/change-email/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "account",
+            "auth",
+            "change-email",
+            ""
+          ]
+        },
+        "description": "Changes the user's email address."
+      },
+      "response": []
+    },
+    {
+      "name": "Change Password",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"old_password\": \"your_old_password\",\n    \"new_password\": \"your_new_password\",\n    \"re_new_password\": \"your_new_password\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/account/auth/change-password/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "account",
+            "auth",
+            "change-password",
+            ""
+          ]
+        },
+        "description": "Changes the user's password."
+      },
+      "response": []
+    },
+    {
+      "name": "User Profile (GET)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/account/auth/profile/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "account",
+            "auth",
+            "profile",
+            ""
+          ]
+        },
+        "description": "Retrieves the current user's profile."
+      },
+      "response": []
+    },
+    {
+      "name": "User Profile (PUT/PATCH)",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/account/auth/profile/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "account",
+            "auth",
+            "profile",
+            ""
+          ]
+        },
+        "description": "Updates the current user's profile."
+      },
+      "response": []
+    },
+    {
+      "name": "Verification Status",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/account/auth/verification-status/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "account",
+            "auth",
+            "verification-status",
+            ""
+          ]
+        },
+        "description": "Checks the user's email verification status."
+      },
+      "response": []
+    },
+    {
+      "name": "Resend Verification Email",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/account/auth/resend-verification-email/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "account",
+            "auth",
+            "resend-verification-email",
+            ""
+          ]
+        },
+        "description": "Resends the email verification link."
+      },
+      "response": []
+    },
+    {
+      "name": "Check Email Existence",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"email\": \"test@example.com\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/account/check-email/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "account",
+            "check-email",
+            ""
+          ]
+        },
+        "description": "Checks if an email address already exists."
+      },
+      "response": []
+    },
+    {
+      "name": "User Registration",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"email\": \"newuser@example.com\",\n    \"password\": \"password123\",\n    \"re_password\": \"password123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/account/registration/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "account",
+            "registration",
+            ""
+          ]
+        },
+        "description": "Registers a new user."
+      },
+      "response": []
+    },
+    {
+      "name": "Activate User Email",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/account/activate/:uid/:token/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "account",
+            "activate",
+            ":uid",
+            ":token",
+            ""
+          ],
+          "variable": [
+            {
+              "key": "uid",
+              "value": "user_id_base64"
+            },
+            {
+              "key": "token",
+              "value": "email_activation_token"
+            }
+          ]
+        },
+        "description": "Activates a user's email address."
+      },
+      "response": []
+    },
+    {
+      "name": "User Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"your_password\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/account/login/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "account",
+            "login",
+            ""
+          ]
+        },
+        "description": "Logs in a user and obtains JWT tokens."
+      },
+      "response": []
+    },
+    {
+      "name": "Verify Email Change",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/account/verify-email-change/:token/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "account",
+            "verify-email-change",
+            ":token",
+            ""
+          ],
+          "variable": [
+            {
+              "key": "token",
+              "value": "email_change_verification_token"
+            }
+          ]
+        },
+        "description": "Verifies an email change request."
+      },
+      "response": []
+    },
+    {
+      "name": "Send Password Reset Email",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"email\": \"user@example.com\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/account/send-password-reset-email/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "account",
+            "send-password-reset-email",
+            ""
+          ]
+        },
+        "description": "Sends a password reset email."
+      },
+      "response": []
+    },
+    {
+      "name": "Password Reset Confirm",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"new_password\": \"new_password123\",\n    \"re_new_password\": \"new_password123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/account/password-reset-confirm/:uid/:token/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "account",
+            "password-reset-confirm",
+            ":uid",
+            ":token",
+            ""
+          ],
+          "variable": [
+            {
+              "key": "uid",
+              "value": "user_id_base64"
+            },
+            {
+              "key": "token",
+              "value": "password_reset_token"
+            }
+          ]
+        },
+        "description": "Confirms password reset with new password."
+      },
+      "response": []
+    },
+    {
+      "name": "Token Verify",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"token\": \"your_access_token\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/account/token/verify/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "account",
+            "token",
+            "verify",
+            ""
+          ]
+        },
+        "description": "Verifies a JWT access token."
+      },
+      "response": []
+    },
+    {
+      "name": "Token Obtain Pair",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"your_password\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/account/token/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "account",
+            "token",
+            ""
+          ]
+        },
+        "description": "Obtains JWT access and refresh tokens."
+      },
+      "response": []
+    },
+    {
+      "name": "Token Refresh",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"refresh\": \"your_refresh_token\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/account/token/refresh/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "account",
+            "token",
+            "refresh",
+            ""
+          ]
+        },
+        "description": "Refreshes a JWT access token using a refresh token."
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string",
+      "description": "Base URL for the API"
+    }
+  ]
+}

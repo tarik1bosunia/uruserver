@@ -3,7 +3,6 @@ from django.urls import path, include
 from . import views
 from .views.rbac import StudentOnlyView,  SuperAdminOnlyView
 
-# TODO: sepharate every view and serializers in sepharate file
 
 from rest_framework.routers import DefaultRouter
 
