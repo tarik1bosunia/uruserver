@@ -13,4 +13,5 @@ python manage.py runserver
 
 ## Steps followed for creating the project
 
+- add .gitignore
 - [initial setup](./guides/initial_setup.md)

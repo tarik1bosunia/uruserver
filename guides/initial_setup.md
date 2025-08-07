@@ -1,7 +1,6 @@
 # Initial Setup
 
 - [creating project](./initial_setup/create_project.md)
-- setup .gitinore
 - [django dotenv](./initial_setup/django_dotenv.md)
 - [DRF setup](./initial_setup/drf.md)
 - [Simple JWt](./initial_setup/simple_jwt.md)
