@@ -4,6 +4,7 @@
 
 ```bash
 pip install djangorestframework
+pip install django-filter  # Filtering support
 ```
 
 ## Add `rest_framework` to your `INSTALLED_APPS` setting
