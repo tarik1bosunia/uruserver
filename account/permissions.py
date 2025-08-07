@@ -1,83 +1,85 @@
 from rest_framework.permissions import BasePermission, SAFE_METHODS
 from .enums import Roles
 
+
 class IsAuthenticatedAndVerified(BasePermission):
     """
-    Allows access only to authenticated users with verified email.
+    Base permission to check if user is authenticated and has a verified email.
     """
+
+    def is_verified(self, user):
+        return getattr(user, "is_authenticated", False) and getattr(user, "is_email_verified", False)
+
     def has_permission(self, request, view):
-        return (
-            request.user and
-            request.user.is_authenticated and
-            request.user.is_email_verified
-        )
+        return self.is_verified(request.user)
 
 
-class IsAuthenticatedAndVerifiedSuperAdmin(BasePermission):
+class IsVerifiedSuperAdmin(IsAuthenticatedAndVerified):
     """
     Allows access only to authenticated SuperAdmin users with verified email.
     """
     def has_permission(self, request, view):
-        return (
-            request.user and
-            request.user.is_authenticated and
-            request.user.is_email_verified and
-            request.user.role == Roles.SUPERADMIN
-        )
-    
-class IsAuthenticatedAndVerifiedBusinessman(BasePermission):
+        return super().has_permission(request, view) and request.user.role == Roles.SUPERADMIN
+
+
+class IsVerifiedStudent(IsAuthenticatedAndVerified):
     """
-    Allows access only to authenticated Businessman users with verified email.
+    Allows access only to authenticated Student users with verified email.
     """
     def has_permission(self, request, view):
-        return (
-            request.user and
-            request.user.is_authenticated and
-            request.user.is_email_verified and
-            request.user.role == Roles.BUSINESSMAN
-        )  
+        return super().has_permission(request, view) and request.user.role == Roles.STUDENT
 
 
-class IsSuperAdminOrReadOnlyBusinessmanVerified(BasePermission):
+class IsVerifiedTeacher(IsAuthenticatedAndVerified):
     """
-    Allows access authenticated verified superadmin users with verified email and 
-    authenticated verified Businessman for readonly
+    Allows access only to authenticated Teacher users with verified email.
     """
     def has_permission(self, request, view):
+        return super().has_permission(request, view) and request.user.role == Roles.TEACHER
 
-        if not request.user.is_authenticated:
+
+class IsVerifiedStudentOrTeacher(IsAuthenticatedAndVerified):
+    """
+    Allows access only to authenticated Student or Teacher users with verified email.
+    """
+    def has_permission(self, request, view):
+        return super().has_permission(request, view) and request.user.role in [Roles.STUDENT, Roles.TEACHER]
+
+
+class IsSuperAdminOrReadOnlyVerifiedStudentOrTeacher(IsAuthenticatedAndVerified):
+    """
+    - Full access: verified SuperAdmin
+    - Read-only: verified Student or Teacher
+    """
+    def has_permission(self, request, view):
+        if not super().has_permission(request, view):
             return False
-        
-        if not request.user.is_email_verified:
-            return False
-        
+
         if request.user.role == Roles.SUPERADMIN:
             return True
-        
-        if request.method in SAFE_METHODS and request.user.role == Roles.BUSINESSMAN:
-            return True
-        return False
+
+        return request.method in SAFE_METHODS and request.user.role in [Roles.STUDENT, Roles.TEACHER]
+
 
 class IsSuperAdmin(BasePermission):
+    """
+    Allows access to authenticated SuperAdmin only (no verified email check).
+    """
     def has_permission(self, request, view):
-        return (
-            request.user.is_authenticated and
-            request.user.role == Roles.SUPERADMIN
-        )
-
-class IsBusinessman(BasePermission):
-    def has_permission(self, request, view):
-        return request.user.is_authenticated and request.user.role == Roles.BUSINESSMAN
+        return getattr(request.user, "is_authenticated", False) and request.user.role == Roles.SUPERADMIN
 
 
-class IsSuperAdminOrReadOnlyBusinessman(BasePermission):
+class IsStudent(BasePermission):
+    """
+    Allows access to authenticated Student only (no verified email check).
+    """
     def has_permission(self, request, view):
-        if not request.user.is_authenticated:
-            return False
-        
-        if request.user.role == Roles.SUPERADMIN:
-            return True
-        
-        if request.method in SAFE_METHODS and request.user.role == Roles.BUSINESSMAN:
-            return True
-        return False
+        return getattr(request.user, "is_authenticated", False) and request.user.role == Roles.STUDENT
+
+
+class IsTeacher(BasePermission):
+    """
+    Allows access to authenticated Teacher only (no verified email check).
+    """
+    def has_permission(self, request, view):
+        return getattr(request.user, "is_authenticated", False) and request.user.role == Roles.TEACHER

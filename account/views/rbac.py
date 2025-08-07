@@ -1,6 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from ..permissions import IsSuperAdmin, IsBusinessman
+from ..permissions import IsSuperAdmin, IsStudent
 
 class SuperAdminOnlyView(APIView):
     permission_classes = [IsSuperAdmin]
@@ -9,8 +9,8 @@ class SuperAdminOnlyView(APIView):
         return Response({'message': 'Hello SuperAdmin!'})
     
 
-class BusinessmanOnlyView(APIView):
-    permission_classes = [IsBusinessman]
+class StudentOnlyView(APIView):
+    permission_classes = [IsStudent]
 
     def get(self, request):
-        return Response({'message': 'Hello Businessman!'})
+        return Response({'message': 'Hello Student!'})

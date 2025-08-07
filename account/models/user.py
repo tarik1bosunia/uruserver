@@ -1,15 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.utils.translation import gettext_lazy as _
-from ..enums import Roles
-
-# TODO: set up password length at least 8
-
-class AuthProvider(models.TextChoices):
-    EMAIL = 'email', _('Email')
-    GOOGLE = 'google', _('Google')
-    GITHUB = 'github', _('GitHub')
-    FACEBOOK = 'facebook',_('Facebook')
+from ..enums import AuthProvider, Roles
 
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -87,7 +79,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         help_text="Designates whether this user's email has been verified."
     )
 
-    role = models.CharField(max_length=20, choices=Roles.choices, default=Roles.BUSINESSMAN)
+    role = models.CharField(max_length=20, choices=Roles.choices, default=Roles.STUDENT)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

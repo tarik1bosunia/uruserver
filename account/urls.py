@@ -1,7 +1,7 @@
 from django.urls import path, include
 
 from . import views
-from .views.rbac import BusinessmanOnlyView,  SuperAdminOnlyView
+from .views.rbac import StudentOnlyView,  SuperAdminOnlyView
 
 # TODO: sepharate every view and serializers in sepharate file
 
@@ -15,7 +15,7 @@ router.register(r'users', views.UserViewSet, basename='user')
 urlpatterns = [
     # just test
     path('superadmin/', SuperAdminOnlyView.as_view()),
-    path('businessman/', BusinessmanOnlyView.as_view()),
+    path('businessman/', StudentOnlyView.as_view()),
 
     # superadmin
     path('', include(router.urls)),

@@ -47,7 +47,7 @@ class Command(BaseCommand):
                 password=password,
                 first_name=f'User{i}',
                 last_name='Test',
-                role=Roles.BUSINESSMAN,  # Or any role you want
+                role=Roles.STUDENT,  # Or any role you want
                 is_active=True,
                 is_email_verified=True,
                 auth_provider='email',
