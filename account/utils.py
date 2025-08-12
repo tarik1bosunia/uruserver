@@ -134,7 +134,7 @@ class Util:
         else:
             print('Email or Password is not Valid')
             return Response({'errors': {'non_field_errors': ['Email or Password is not Valid']}},
-                            status=status.HTTP_404_NOT_FOUND)
+                            status=status.HTTP_401_UNAUTHORIZED)
         
     @staticmethod
     def get_tokens_for_user(user):

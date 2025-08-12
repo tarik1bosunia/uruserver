@@ -49,7 +49,7 @@ class UserLoginViewTest(APITestCase):
 
         response = self.client.post(self.login_url, payload, format='json')
 
-        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         self.assertIn("errors", response.data)
         self.assertIn("non_field_errors", response.data["errors"])
         self.assertEqual(
